@@ -1,0 +1,477 @@
+@import "tailwindcss";
+
+@theme {
+  --font-orbitron: var(--font-orbitron), sans-serif;
+  --font-outfit: var(--font-outfit), sans-serif;
+  
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-pink: var(--neon-pink);
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-scan: scan 3s linear infinite;
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(1deg);
+    }
+  }
+  @keyframes scan {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100%);
+    }
+  }
+}
+
+:root {
+  --background: #020208;
+  --foreground: #f3f4f6;
+  --card-bg: rgba(6, 6, 20, 0.6);
+  --card-border: rgba(0, 240, 255, 0.12);
+  --card-border-hover: rgba(189, 0, 255, 0.4);
+  --glow-color: rgba(0, 240, 255, 0.15);
+  --glow-color-purple: rgba(189, 0, 255, 0.25);
+  --grid-color: rgba(0, 240, 255, 0.03);
+  
+  --neon-blue: #00f0ff;
+  --neon-purple: #bd00ff;
+  --neon-cyan: #00ffff;
+  --neon-pink: #ff007f;
+
+  /* Tech brand colors in dark theme */
+  --tech-react: #00f0ff;
+  --tech-next: #ffffff;
+  --tech-node: #339933;
+  --tech-flutter: #02569B;
+  --tech-firebase: #FFCA28;
+  --tech-mongodb: #47A248;
+  --tech-python: #3776AB;
+}
+
+.light-theme {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-border: rgba(99, 102, 241, 0.15);
+  --card-border-hover: rgba(99, 102, 241, 0.4);
+  --glow-color: rgba(99, 102, 241, 0.06);
+  --glow-color-purple: rgba(139, 92, 246, 0.10);
+  --grid-color: rgba(99, 102, 241, 0.05);
+  
+  --neon-blue: #1d4ed8;      /* Deep royal blue */
+  --neon-purple: #6d28d9;    /* Deep purple */
+  --neon-cyan: #0f766e;      /* Deep teal/cyan */
+  --neon-pink: #be185d;      /* Deep magenta pink */
+
+  /* Tech brand colors in light theme - optimized for legibility on light background */
+  --tech-react: #0891b2;
+  --tech-next: #0f172a;
+  --tech-node: #166534;
+  --tech-flutter: #0369a1;
+  --tech-firebase: #c2410c;
+  --tech-mongodb: #166534;
+  --tech-python: #1d4ed8;
+}
+
+/* --- LIGHT THEME OPTIMIZATIONS FOR ULTRA READABILITY --- */
+.light-theme {
+  /* Scrollbar overrides */
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #2563eb, #7c3aed);
+  }
+
+  /* Force dark text on light background headers & text wrappers */
+  h1, h2, h3, h4, h5, h6,
+  .text-white {
+    color: #0f172a !important;
+  }
+  
+  .text-slate-100 {
+    color: #1e293b !important;
+  }
+  
+  .text-slate-200 {
+    color: #1e293b !important;
+  }
+  
+  .text-slate-300 {
+    color: #334155 !important;
+  }
+  
+  .text-slate-400 {
+    color: #475569 !important;
+  }
+  
+  .text-slate-500 {
+    color: #64748b !important;
+  }
+  
+  .text-slate-600 {
+    color: #64748b !important;
+  }
+
+  /* High contrast colors for semantic alerts/badges in light theme */
+  .text-emerald-300,
+  .text-emerald-400,
+  .text-emerald-500,
+  .text-emerald-600 {
+    color: #047857 !important;
+  }
+
+  .text-amber-400,
+  .text-amber-500,
+  .text-amber-600 {
+    color: #b45309 !important;
+  }
+
+  .text-red-400,
+  .text-red-500,
+  .text-red-650 {
+    color: #b91c1c !important;
+  }
+
+  /* WhatsApp button style corrections in light theme */
+  .border-emerald-500\/30 {
+    border-color: rgba(16, 185, 129, 0.25) !important;
+  }
+  .bg-emerald-950\/20 {
+    background-color: rgba(16, 185, 129, 0.08) !important;
+  }
+  .hover\:bg-emerald-950\/40:hover {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+  }
+  .fill-emerald-500\/20 {
+    fill: rgba(16, 185, 129, 0.1) !important;
+  }
+
+  /* Diagnostics console buttons and badges overrides in light theme */
+  .bg-emerald-500\/10 {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+  }
+  .border-emerald-500\/40 {
+    border-color: rgba(16, 185, 129, 0.3) !important;
+  }
+  
+  .bg-red-500\/10 {
+    background-color: rgba(239, 68, 68, 0.1) !important;
+  }
+  .border-red-500\/40 {
+    border-color: rgba(239, 68, 68, 0.3) !important;
+  }
+  
+  .bg-amber-500\/10 {
+    background-color: rgba(245, 158, 11, 0.1) !important;
+  }
+  .border-amber-500\/40 {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+  }
+
+  /* Retain white text & icons on dark gradient elements in light theme */
+  button.bg-gradient-to-tr,
+  button.bg-gradient-to-br,
+  button.bg-gradient-to-r,
+  a.bg-gradient-to-br,
+  a.bg-gradient-to-tr,
+  a.bg-gradient-to-r {
+    color: #ffffff !important;
+  }
+  
+  button.bg-gradient-to-tr svg,
+  button.bg-gradient-to-br svg,
+  button.bg-gradient-to-r svg,
+  a.bg-gradient-to-br svg,
+  a.bg-gradient-to-tr svg,
+  a.bg-gradient-to-r svg {
+    color: #ffffff !important;
+  }
+
+  /* Multi-layered glass buttons inside light theme */
+  a.bg-gradient-to-br span,
+  button[type="submit"] span {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+  
+  a.bg-gradient-to-br:hover span,
+  button[type="submit"]:hover span {
+    background-color: transparent !important;
+    color: #ffffff !important;
+  }
+
+  /* Soften glow effects for readability */
+  .text-glow-blue {
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.25), 0 0 15px rgba(37, 99, 235, 0.1) !important;
+  }
+  
+  .text-glow-purple {
+    text-shadow: 0 0 8px rgba(109, 40, 217, 0.25), 0 0 15px rgba(109, 40, 217, 0.1) !important;
+  }
+  
+  .text-glow-cyan {
+    text-shadow: 0 0 8px rgba(15, 118, 110, 0.25), 0 0 15px rgba(15, 118, 110, 0.1) !important;
+  }
+
+  /* Card and section background overrides to gorgeous frosted glass */
+  .bg-slate-950,
+  .bg-slate-950\/90,
+  .bg-slate-950\/80,
+  .bg-slate-950\/60,
+  .bg-slate-950\/50,
+  .bg-slate-950\/40,
+  .bg-slate-950\/20,
+  .bg-slate-900,
+  .bg-slate-900\/90,
+  .bg-slate-900\/80,
+  .bg-slate-900\/60,
+  .bg-slate-900\/50,
+  .bg-slate-900\/40,
+  .bg-slate-900\/30 {
+    background-color: var(--card-bg) !important;
+  }
+
+  .bg-slate-950.rounded-full {
+    background-color: #cbd5e1 !important;
+  }
+
+  /* Border color overrides */
+  .border-slate-900,
+  .border-slate-900\/60,
+  .border-slate-850,
+  .border-slate-800,
+  .border-slate-800\/80,
+  .border-slate-800\/50,
+  .border-slate-800\/40 {
+    border-color: var(--card-border) !important;
+  }
+
+  /* Input fields */
+  input, textarea, select {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+    color: #0f172a !important;
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    background-color: #ffffff !important;
+    border-color: #2563eb !important;
+  }
+
+  /* Secondary button 'View Services' overrides */
+  a[href="#services"] {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(99, 102, 241, 0.25) !important;
+    color: #334155 !important;
+  }
+  
+  a[href="#services"]:hover {
+    background-color: #ffffff !important;
+    border-color: #7c3aed !important;
+    color: #0f172a !important;
+  }
+
+  /* Telemetry Status pills */
+  .hologram-line {
+    background-color: rgba(37, 99, 235, 0.08) !important;
+    border-color: rgba(37, 99, 235, 0.25) !important;
+    color: #2563eb !important;
+  }
+  .hologram-line::after {
+    background: linear-gradient(90deg, transparent, #1d4ed8, transparent) !important;
+  }
+
+  /* Chatbot styles */
+  .fixed .bg-slate-950\/90 {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1) !important;
+  }
+  
+  .fixed .border-b.border-slate-900 {
+    border-bottom-color: rgba(226, 232, 240, 0.8) !important;
+  }
+  
+  .fixed .text-slate-200 {
+    color: #1e293b !important;
+  }
+  
+  .fixed .bg-gradient-to-br.from-neon-purple\/20.to-slate-950 {
+    background: rgba(139, 92, 246, 0.08) !important;
+    border-color: rgba(139, 92, 246, 0.2) !important;
+    color: #4c1d95 !important;
+  }
+  
+  .fixed .bg-slate-900\/50 {
+    background: rgba(241, 245, 249, 0.9) !important;
+    border-color: rgba(226, 232, 240, 0.8) !important;
+    color: #1e293b !important;
+  }
+  
+  .fixed .bg-slate-900.border-slate-800 {
+    background-color: #f1f5f9 !important;
+    border-color: #e2e8f0 !important;
+    color: #475569 !important;
+  }
+  
+  .fixed .bg-slate-900.border-slate-800:hover {
+    border-color: #2563eb !important;
+    color: #2563eb !important;
+  }
+
+  /* React / Next.js technology stack logos */
+  img.invert {
+    filter: invert(0) !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(2, 2, 8, 0.9);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff, #bd00ff);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00ffff, #ff007f);
+}
+
+/* Futuristic Grids & Layouts */
+.cyber-grid {
+  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
+
+.radial-mask {
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+/* Glassmorphism Cards */
+.glass-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37),
+              inset 0 0 12px 0 rgba(255, 255, 255, 0.02);
+}
+
+.glass-panel:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 12px 40px 0 rgba(189, 0, 255, 0.15),
+              inset 0 0 20px 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px);
+}
+
+/* Glowing Neon Text */
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(189, 0, 255, 0.6), 0 0 20px rgba(189, 0, 255, 0.3);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* Glowing Neon Borders & Rings */
+.glow-ring-blue {
+  box-shadow: 0 0 15px 2px rgba(0, 240, 255, 0.4);
+}
+
+.glow-ring-purple {
+  box-shadow: 0 0 15px 2px rgba(189, 0, 255, 0.4);
+}
+
+/* Custom Cursors & Mouse Effects */
+.pointer-none {
+  pointer-events: none;
+}
+
+/* Loading Hologram Line */
+.hologram-line {
+  position: relative;
+  overflow: hidden;
+}
+.hologram-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  animation: scan 2s linear infinite;
+}
+
+/* Hide default input outlines for sleek UI */
+input, textarea, select {
+  outline: none;
+}
+
+/* Swiper / Testimonial scrolling utility */
+.infinite-scroll-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+.infinite-scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 40s linear infinite;
+}
+.infinite-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
